@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Start Earning Online Today</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Verified remote jobs and flexible online work. No experience required — apply in minutes." />
+
+  <!-- Mobile-friendly font sizing and touch targets -->
+  <style>
+    :root{
+      --accent:#2575fc;
+      --cta-bg:#ffffff;
+      --cta-color:var(--accent);
+      --card-bg:rgba(0,0,0,0.30);
+      --muted:rgba(255,255,255,0.92);
+      --max-width:980px;
+      --tap-size:48px; /* minimum recommended touch target */
+    }
+
+    /* Base layout */
+    html,body{height:100%;margin:0}
+    body{
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,Helvetica,sans-serif;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:16px;
+      color:#fff;
+      text-align:center;
+      min-height:100vh;
+      background: linear-gradient(135deg,#0f172a 0%, #1e293b 50%, #0b1220 100%);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* Container */
+    .container{
+      width:100%;
+      max-width:var(--max-width);
+      background:var(--card-bg);
+      padding:20px;
+      border-radius:12px;
+      box-shadow:0 8px 30px rgba(0,0,0,0.45);
+      backdrop-filter: blur(4px);
+    }
+
+    /* Responsive typography */
+    h1{
+      font-size:clamp(1.25rem, 3.5vw, 2rem);
+      margin:0 0 8px 0;
+      line-height:1.05;
+      text-shadow:1px 1px 3px rgba(0,0,0,0.6);
+    }
+    .lead{
+      margin:0 0 14px 0;
+      font-size:clamp(0.95rem, 2.2vw, 1rem);
+      color:var(--muted);
+      text-shadow:1px 1px 3px rgba(0,0,0,0.45);
+    }
+
+    /* Benefits and trust */
+    .benefits{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:12px 0 14px 0}
+    .benefit{background:rgba(255,255,255,0.04);padding:8px 10px;border-radius:8px;font-size:0.95rem;display:flex;align-items:center;gap:8px;color:#fff}
+    .trust-row{display:flex;justify-content:center;gap:12px;align-items:center;margin-top:12px;flex-wrap:wrap}
+    .trust-badge{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.03);padding:8px 10px;border-radius:8px;font-size:0.9rem;color:var(--muted)}
+
+    /* CTA area */
+    .cta-wrap{margin-top:16px;display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap}
+    button.cta{
+      border:0;background:var(--cta-bg);color:var(--cta-color);
+      padding:14px 22px;font-size:1rem;font-weight:700;border-radius:10px;cursor:pointer;
+      box-shadow:0 6px 18px rgba(37,117,252,0.18);transition:transform .12s ease,box-shadow .12s ease;
+      min-height:var(--tap-size); min-width:140px;
+    }
+    button.cta:active{transform:translateY(1px)}
+    button.secondary{
+      background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.12);
+      padding:12px 18px;border-radius:10px;cursor:pointer;min-height:var(--tap-size);
+    }
+
+    /* Progress */
+    .progress{width:260px;height:10px;background:rgba(255,255,255,0.08);border-radius:999px;overflow:hidden;display:inline-block;vertical-align:middle}
+    .progress > i{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--cta-color),#6aa8ff);transition:width 0.2s linear}
+
+    .offer-preview{margin-top:12px;font-size:0.95rem;color:var(--muted)}
+
+    footer{margin-top:18px;font-size:0.82rem;opacity:0.95;color:var(--muted)}
+    footer a{color:var(--muted);text-decoration:underline;margin:0 8px}
+
+    /* Modal */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);z-index:1000}
+    .modal .card{width:90%;max-width:720px;background:#fff;color:#111;border-radius:10px;padding:18px;box-shadow:0 10px 40px rgba(0,0,0,0.4);text-align:left}
+    .modal .close{float:right;background:transparent;border:0;font-size:18px;cursor:pointer}
+    .offer-list{max-height:320px;overflow:auto;margin-top:8px;padding-right:6px}
+    .offer-item{padding:8px 0;border-bottom:1px solid #eee;font-size:0.95rem}
+
+    /* Mobile optimizations */
+    @media (max-width:600px){
+      .container{padding:16px}
+      .cta-wrap{position:static;flex-direction:column-reverse}
+      button.cta{width:100%;min-width:0;border-radius:12px;padding:14px}
+      .progress{width:100%}
+      .trust-row{gap:8px}
+      footer{font-size:0.78rem}
+    }
+
+    /* Sticky bottom CTA for mobile (optional) */
+    .sticky-cta{
+      display:none;
+      position:fixed;
+      left:0;right:0;bottom:0;
+      padding:10px 12px;
+      background:linear-gradient(180deg, rgba(11,17,32,0.92), rgba(6,10,20,0.98));
+      box-shadow:0 -6px 20px rgba(0,0,0,0.45);
+      z-index:1200;
+      justify-content:center;
+      gap:10px;
+    }
+    .sticky-cta button{flex:1}
+
+    @media (max-width:520px){
+      .sticky-cta{display:flex}
+      /* hide main CTA area to avoid duplication */
+      .cta-wrap{display:none}
+    }
+
+    /* Accessibility focus styles */
+    :focus{outline:3px solid rgba(37,117,252,0.18);outline-offset:2px}
+  </style>
+</head>
+<body>
+  <main class="container" role="main" aria-labelledby="page-title">
+    <header>
+      <h1 id="page-title">Start Earning $50–$200 / Day — Verified Remote Jobs</h1>
+      <p class="lead">Apply in minutes, start earning quickly. Curated, verified opportunities with fast payouts.</p>
+    </header>
+
+    <section class="benefits" aria-hidden="false">
+      <div class="benefit">💼 Work from anywhere</div>
+      <div class="benefit">💸 Fast payouts</div>
+      <div class="benefit">⚡ Quick setup</div>
+    </section>
+
+    <!-- Real trust assets: inline SVG logos and partner badges (replace with real logos or CDN URLs) -->
+    <div class="trust-row" aria-hidden="false" aria-label="Trusted by">
+      <!-- Inline SVG partner logo example (keeps page lightweight and avoids extra requests) -->
+      <div class="trust-badge" title="Partner A">
+        <svg width="36" height="24" viewBox="0 0 36 24" aria-hidden="true" focusable="false">
+          <rect width="36" height="24" rx="4" fill="#fff" opacity="0.06"></rect>
+          <path d="M6 12h6v6H6zM18 6h12v12H18z" fill="#fff" opacity="0.9"></path>
+        </svg>
+        <span>Partner A</span>
+      </div>
+
+      <div class="trust-badge" title="Partner B">
+        <svg width="36" height="24" viewBox="0 0 36 24" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="10" fill="#fff" opacity="0.06"></circle>
+          <path d="M8 12h8v6H8z" fill="#fff" opacity="0.9"></path>
+        </svg>
+        <span>Partner B</span>
+      </div>
+
+      <div class="trust-badge" title="Partner C">
+        <svg width="36" height="24" viewBox="0 0 36 24" aria-hidden="true" focusable="false">
+          <rect x="4" y="6" width="28" height="12" rx="2" fill="#fff" opacity="0.06"></rect>
+          <path d="M8 12h20" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity="0.9"></path>
+        </svg>
+        <span>Partner C</span>
+      </div>
+    </div>
+
+    <p class="testimonial">“I started my first remote job in 3 days — payouts were fast and support was helpful.” — <strong>A. N., Lagos</strong></p>
+
+    <!-- CTA area (hidden on very small screens in favor of sticky CTA) -->
+    <div class="cta-wrap" aria-live="polite">
+      <button id="primaryCta" class="cta" aria-label="Get paid jobs now">Get Paid Jobs Now</button>
+      <button id="previewBtn" class="secondary" aria-haspopup="dialog" aria-controls="offersModal">Preview Offers</button>
+
+      <div style="display:flex;align-items:center;gap:10px;margin-left:6px;">
+        <div class="progress" aria-hidden="true" title="Redirect progress"><i id="progressBar"></i></div>
+        <div id="countdown" style="min-width:48px;text-align:left;font-size:0.95rem;color:var(--muted)">5s</div>
+      </div>
+    </div>
+
+    <!-- Sticky CTA for mobile -->
+    <div class="sticky-cta" aria-hidden="false">
+      <button id="stickyCta" class="cta" aria-label="Get paid jobs now (mobile)">Get Paid Jobs Now</button>
+      <button id="stickyPreview" class="secondary" aria-haspopup="dialog" aria-controls="offersModal">Preview</button>
+    </div>
+
+    <div class="offer-preview" id="offerPreview" aria-live="polite">Selected offer: Preparing…</div>
+
+    <p style="margin-top:12px;font-size:0.88rem;color:var(--muted)"><strong>Affiliate disclosure:</strong> We may earn a commission if you complete an offer. This does not affect your price.</p>
+
+    <footer role="contentinfo">
+      <a href="/terms" rel="noopener">Terms of Service</a> |
+      <a href="/privacy" rel="noopener">Privacy Policy</a> |
+      <a href="/disclaimer" rel="noopener">Disclaimer</a>
+    </footer>
+  </main>
+
+  <!-- Offers modal -->
+  <div id="offersModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="offersTitle">
+    <div class="card" role="document">
+      <button class="close" id="closeModal" aria-label="Close offers list">✕</button>
+      <h3 id="offersTitle">Available Offers</h3>
+      <p style="margin:6px 0 10px 0;font-size:0.95rem;color:#333">Click any offer to open it in a new tab.</p>
+      <div class="offer-list" id="offerList" tabindex="0" aria-label="List of offers"></div>
+    </div>
+  </div>
+
+  <!-- Non-JS fallback: visible links and instructions for agents that don't execute JS.
+       This ensures non-JS agents and simple crawlers can still access offers.
+       For full non-JS redirect behavior, implement a server-side redirect endpoint (/go). -->
+  <noscript>
+    <style>
+      /* Make noscript content readable and prominent */
+      .nojs-banner{background:#111;color:#fff;padding:12px;border-radius:8px;margin:12px 0;font-size:0.95rem}
+      .nojs-offer-list a{display:inline-block;margin:6px 6px;padding:8px 10px;background:#fff;color:#111;border-radius:8px;text-decoration:none}
+    </style>
+    <div class="nojs-banner" role="status">
+      JavaScript is disabled or not available. Click an offer below to continue.
+      <div class="nojs-offer-list" style="margin-top:8px;">
+        <!-- Provide direct links for non-JS agents; replace with your preferred default offer -->
+        <a href="https://nx2bs.com/c?o=438&a=26132" rel="noopener noreferrer">Data Entry — $40–$120</a>
+        <a href="https://nx2bs.com/c?o=439&a=26132" rel="noopener noreferrer">Survey Jobs — $10–$60</a>
+        <a href="https://nx2bs.com/c?o=416&a=26132" rel="noopener noreferrer">Freelance Gigs — $50–$200</a>
+      </div>
+    </div>
+  </noscript>
+
+  <script>
+    // Editable offers list
+    const offers = [
+      { id: "438", url: "https://nx2bs.com/c?o=438&a=26132", label: "Data Entry — $40–$120" },
+      { id: "439", url: "https://nx2bs.com/c?o=439&a=26132", label: "Survey Jobs — $10–$60" },
+      { id: "405", url: "https://nx2bs.com/c?o=405&a=26132", label: "Microtasks — $5–$50" },
+      { id: "414", url: "https://nx2bs.com/c?o=414&a=26132", label: "Customer Support — $60–$180" },
+      { id: "416", url: "https://nx2bs.com/c?o=416&a=26132", label: "Freelance Gigs — $50–$200" },
+      { id: "419", url: "https://nx2bs.com/c?o=419&a=26132", label: "Transcription — $20–$100" },
+      { id: "427", url: "https://nx2bs.com/c?o=427&a=26132", label: "Tutoring — $30–$150" },
+      { id: "42",  url: "https://nx2bs.com/c?o=42&a=26132",  label: "Affiliate Offers — $10–$300" },
+      { id: "41",  url: "https://nx2bs.com/c?o=41&a=26132",  label: "App Testing — $5–$40" },
+      { id: "10",  url: "https://nx2bs.com/c?o=10&a=26132",  label: "Content Writing — $30–$200" },
+      { id: "402", url: "https://nx2bs.com/c?o=402&a=26132", label: "Virtual Assistant — $40–$160" },
+      { id: "291", url: "https://nx2bs.com/c?o=291&a=26132", label: "Data Labeling — $10–$80" },
+      { id: "44",  url: "https://nx2bs.com/c?o=44&a=26132",  label: "Graphic Tasks — $20–$150" },
+      { id: "45",  url: "https://nx2bs.com/c?o=45&a=26132",  label: "Referral Programs — $5–$100" }
+    ];
+
+    // Choose one offer at random (client-side preview only)
+    const chosen = offers[Math.floor(Math.random() * offers.length)];
+
+    // Elements
+    const primaryCta = document.getElementById('primaryCta');
+    const previewBtn = document.getElementById('previewBtn');
+    const stickyCta = document.getElementById('stickyCta');
+    const stickyPreview = document.getElementById('stickyPreview');
+    const progressBar = document.getElementById('progressBar');
+    const countdown = document.getElementById('countdown');
+    const offerPreview = document.getElementById('offerPreview');
+    const offersModal = document.getElementById('offersModal');
+    const offerList = document.getElementById('offerList');
+    const closeModal = document.getElementById('closeModal');
+
+    // Show chosen offer preview
+    offerPreview.textContent = `Selected offer: ${chosen.label}`;
+
+    // Populate modal list
+    function populateOffers() {
+      offerList.innerHTML = '';
+      offers.forEach(o => {
+        const div = document.createElement('div');
+        div.className = 'offer-item';
+        const a = document.createElement('a');
+        a.href = o.url;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        a.textContent = `${o.label} (Offer ID: ${o.id})`;
+        a.style.color = '#1a73e8';
+        a.style.display = 'inline-block';
+        a.style.padding = '6px 0';
+        div.appendChild(a);
+        offerList.appendChild(div);
+      });
+    }
+    populateOffers();
+
+    // Progress bar countdown (5 seconds)
+    let timeLeft = 5;
+    countdown.textContent = `${timeLeft}s`;
+    progressBar.style.width = '0%';
+    const step = 100 / (timeLeft * 10); // update every 100ms
+    let progress = 0;
+    const interval = setInterval(() => {
+      progress += step;
+      if (progress > 100) progress = 100;
+      progressBar.style.width = progress + '%';
+    }, 100);
+
+    // Countdown timer
+    const countdownTimer = setInterval(() => {
+      timeLeft -= 1;
+      if (timeLeft <= 0) {
+        countdown.textContent = '0s';
+        clearInterval(countdownTimer);
+      } else {
+        countdown.textContent = `${timeLeft}s`;
+      }
+    }, 1000);
+
+    // Redirect function (client-side)
+    function redirectToOffer(url) {
+      offerPreview.textContent = `Redirecting to: ${chosen.label}`;
+      // Use replace to avoid adding history entry
+      window.location.replace(url);
+    }
+
+    // Auto-redirect after 5 seconds
+    const redirectTimer = setTimeout(() => redirectToOffer(chosen.url), 5000);
+
+    // Primary CTA click: cancel timer and redirect immediately
+    function handleImmediateRedirect(e) {
+      e && e.preventDefault();
+      clearTimeout(redirectTimer);
+      clearInterval(interval);
+      clearInterval(countdownTimer);
+      progressBar.style.width = '100%';
+      countdown.textContent = '0s';
+      redirectToOffer(chosen.url);
+    }
+
+    primaryCta.addEventListener('click', handleImmediateRedirect);
+    stickyCta && stickyCta.addEventListener('click', handleImmediateRedirect);
+
+    // Preview button opens modal
+    function openModal(e) {
+      e && e.preventDefault();
+      offersModal.style.display = 'flex';
+      offersModal.querySelector('.card').focus();
+    }
+    previewBtn.addEventListener('click', openModal);
+    stickyPreview && stickyPreview.addEventListener('click', openModal);
+
+    // Close modal
+    closeModal.addEventListener('click', function () {
+      offersModal.style.display = 'none';
+      previewBtn.focus();
+    });
+
+    // Close modal on backdrop click
+    offersModal.addEventListener('click', function (e) {
+      if (e.target === offersModal) {
+        offersModal.style.display = 'none';
+        previewBtn.focus();
+      }
+    });
+
+    // Keyboard accessibility: Esc to close modal
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && offersModal.style.display === 'flex') {
+        offersModal.style.display = 'none';
+        previewBtn.focus();
+      }
+    });
+
+    // Accessibility: ensure large tap targets on mobile
+    (function ensureTapTargets() {
+      // Add aria-expanded to preview button for screen readers
+      previewBtn.setAttribute('aria-expanded', 'false');
+      previewBtn.addEventListener('click', () => previewBtn.setAttribute('aria-expanded', 'true'));
+    })();
+
+    // Notes:
+    // - Non-JS agents: the <noscript> block provides direct links so crawlers and non-JS users can access offers.
+    // - For robust non-JS redirect behavior, implement a server-side redirect endpoint (e.g., /go) that issues a 302 Location header.
+    // - Real partner logos: replace the inline SVGs above with your partners' official SVGs or HTTPS CDN-hosted images (ensure you have permission).
+    // - Mobile UX: sticky CTA appears on small screens for immediate access.
+  </script>
+</body>
+</html>
